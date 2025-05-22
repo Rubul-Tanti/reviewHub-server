@@ -1,0 +1,12 @@
+const express=require("express")
+const {asyncErrorHandler}=require("../middleware/errorHandler")
+const registerUser=require("../controlers/register")
+const treandingToday = require("../controlers/treandingToday")
+const featureToday=require("../controlers/featureToday")
+const getYoutubeChannel = require("../controlers/getYoutubeChannel")
+const router=express.Router()
+router.post("/register-user",registerUser)
+router.get("/treandingToday",asyncErrorHandler(treandingToday))
+router.get("/featureToday",asyncErrorHandler(featureToday))
+router.post("/getYoutubeChannel",asyncErrorHandler(getYoutubeChannel))
+module.exports=router

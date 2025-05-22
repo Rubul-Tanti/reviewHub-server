@@ -1,0 +1,13 @@
+const express=require('express')
+const {globalErrorHandler}=require("./middleware/errorHandler")
+const router=require("./router/index")
+const app=express()
+const env=require('dotenv')
+env.config()
+const connectToDB = require('./Database/dbConnection')
+connectToDB()        
+const Port=process.env.PORT||3000
+app.use(express.json())
+app.use("/api",router)
+app.use(globalErrorHandler)
+app.listen(Port)
